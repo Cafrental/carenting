@@ -13,16 +13,16 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className='carCards flex'>
+    <div className='grid grid-cols-5 gap-8 m-8'>
     {listOfCars.map((car) =>{
       return (
-        <div className="justify-center m-3" onClick={() => { setOrder(car._id)}}>
-        <div className="border-solid border-2 border-black shadow-lg bg-white max-w-sm hover:scale-105 transition duration-500 cursor-pointer">
+        <div className="justify-center" onClick={() => { setOrder(car._id)}}>
+        <div className="h-full border-solid border-2 border-gray-500 drop-shadow-lg bg-white hover:scale-105 transition duration-500 cursor-pointer">
           <img className="" src={car.photoURL} alt={car.model}/>
           <div className="p-5">
-          <p className="text-gray-900 text-xl font-medium mb-2">{car.make}</p>
-          <p className="text-gray-900 text-md font-medium">{car.model}</p>
-          <p className="text-gray-900 text-md font-medium">{car.year}</p>
+          <p className="text-gray-900 text-xl font-medium mb-2">{car.make} {car.model}</p>
+          <p className="text-gray-600 text-md font-medium">{car.year}</p>
+          <p className="text-gray-600 text-md font-medium"></p>
           </div>
         </div>
       </div>
@@ -30,6 +30,7 @@ useEffect(() => {
     })}
     Chosen car id: {id}
   </div>
+  
 
 
   );
