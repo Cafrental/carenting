@@ -10,8 +10,8 @@ const FrontPage = () => {
       <div class="absolute top-0 right-0 bottom-0 left-0 w-1/2 h-full overflow-hidden bg-fixed bg-black opacity-25"></div>
       <div class="right-0 ml-8 w-0.5 h-screen bg-gradient-to-t from-black/60 via-white/60 to-black/60"></div>
       <div class="fixed top-5 left-5 right-0">
-        <button className='border border-white-500 bg-black text-white p-1 rounded mr-3' onClick={[]}> Log in </button>
-        <button className='border border-black bg-black text-white p-1 rounded' onClick={[]}> Sign in </button>
+        <button className='bg-transparent text-white p-1 rounded mr-3' onClick={[]}> Sign in </button>
+        <button className='border border-white bg-transparent text-white p-1 rounded' onClick={[]}> Sign up </button>
       </div>
     </div>
 
