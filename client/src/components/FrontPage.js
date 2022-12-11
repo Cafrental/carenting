@@ -6,9 +6,13 @@ const FrontPage = () => {
   return (
     <div className='bg-black w-full h-screen flex mb-5'>
     <div className='w-1/2 flex'>
-      <img className='object-cover h-screen' src="/imgs/car3.png" />
+      <img className='object-cover h-screen' src="/imgs/car3.png" />  
       <div class="absolute top-0 right-0 bottom-0 left-0 w-1/2 h-full overflow-hidden bg-fixed bg-black opacity-25"></div>
       <div class="right-0 ml-8 w-0.5 h-screen bg-gradient-to-t from-black/60 via-white/60 to-black/60"></div>
+      <div class="fixed top-5 left-5 right-0">
+        <button className='border border-white-500 bg-black text-white p-1 rounded mr-3' onClick={[]}> Log in </button>
+        <button className='border border-black bg-black text-white p-1 rounded' onClick={[]}> Sign in </button>
+      </div>
     </div>
 
     <div className='w-1/2 grid grid-rows-4 grid-cols-2 place items-center'>
