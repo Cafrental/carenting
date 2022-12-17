@@ -6,6 +6,8 @@ const UserModel = require('./models/users.js')
 const OrderModel = require('./models/orders.js')
 const LocationModel = require('./models/locations.js')
 
+mongoose.set('strictQuery', false);
+
 const cors = require('cors')
 
 app.use(express.json());
