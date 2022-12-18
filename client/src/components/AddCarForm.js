@@ -10,15 +10,15 @@ const AddCarForm = () => {
   const [license, setLicense] = useState("");
   const [photoURL, setPhotoURL] = useState("");
 
-const createCar = () => {
-  Axios.post("http://localhost:3001/createCar", {
-    make,
-    model,
-    year,
-    license,
-    photoURL
-  }).then((response) => {alert("aaa")});
-};
+  const createCar = () => {
+    Axios.post("http://localhost:3001/createCar", {
+      make,
+      model,
+      year,
+      license,
+      photoURL
+    }).then((response) => {alert("Car succesfully created")});
+  };
 
   return (
     <div className='flex m-3 justify-center'>
