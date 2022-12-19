@@ -77,6 +77,21 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/search", async (req, res) => {
+  try {
+  const { like, Make, Model, Location, Date } = req.body;
+  let query = {};
+  if (like) query.like = like;
+  if (Make) query.Make = Make;
+  if (Model) query.Model = Model;
+  if (Location) query.Location = Location;
+  if (Date) query.Date = Date;
+  const results = await Model.find(query);
+  res.json(results);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.post("/createCar", async (req, res) => {
     const car = req.body;
