@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-    "mongodb+srv://User0:SuperPass525@cluster0.obxvb4y.mongodb.net/Carenting?retryWrites=true&w=majority"
+    "mongodb+srv://User0:SuperPass525@appcluster.ocseros.mongodb.net/CarentingDB?retryWrites=true&w=majority"
 );
 app.get("/getCars", (req, res) => {
      CarModel.find({}, (err, result) => {

@@ -1,6 +1,24 @@
 import { useState } from "react";
+import Axios from "axios";
+import App from "../App";
 
 const Form = () => {
+  const [like, setLike] = useState('');
+  const [Make, setMake] = useState(''); 
+  const [Model, setModel] = useState(''); 
+  const [Location, setLocation] = useState(''); 
+  const [Date, setDate] = useState(''); 
+
+  const search = () => {
+    Axios.post("http://localhost:3001/search", {
+      like,
+      Make,
+      Model,
+      Location,
+      Date
+    }).then((response) => {alert(response.data)});
+  };
+
   const [id, setOrder] = useState(0);
   return (
     <div className="h-full w-full items-center">
@@ -20,6 +38,7 @@ const Form = () => {
           id="search"
           className="mt-6 mb-3 w-full h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500  p-2.5"
           placeholder="Search"
+          onChange={setLike}
         ></input>
 
         <div className="flex min-w-full">
@@ -27,14 +46,16 @@ const Form = () => {
             type="text"
             id="mark"
             className="basis-5/12 mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            placeholder="Mark"
+            placeholder="Make"
+            onChange={setMake}
           ></input>
           <div className="basis-2/12"></div>
           <input
             type="text"
             id="mark"
             className="basis-5/12 justify-self-end mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
-            placeholder="Make"
+            placeholder="Model"
+            onChange={setModel}
           ></input>
         </div>
 
@@ -44,23 +65,23 @@ const Form = () => {
             id="location"
             className="basis-5/12 mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
             placeholder="Location"
+            onChange={setLocation}
           ></input>
           <div className="basis-2/12"></div>
           <input
             type="date"
             id="date"
             className="basis-5/12 mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            onChange={setDate}
           ></input>
         </div>
-        <input
-          type="submit"
-          value="Search"
+        <button
           className="h-10 text-white text-base border border-color-white align-middle w-1/3 hover:bg-white hover:bg-opacity-10 transition-all duration-[250ms] ease-out group-hover:w-full"
-        ></input>
+          onClick={search}
+        >Search</button>
       </form>
     </div>
   );
 };
 
 export default Form;
-
