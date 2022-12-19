@@ -1,17 +1,23 @@
-import "./App.css";
-import { useState } from "react";
-import CarCards from "./components/CarCards";
-import FrontPage from "./components/FrontPage";
-import AddCarForm from "./components/AddCarForm";
-import Footer from "./components/Footer";
+import './App.css';
+import { useState } from 'react';
+import CarCards from './components/CarCards';
+import FrontPage from './components/FrontPage';
+import AddCarForm from './components/AddCarForm';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
+
+
 function App() {
+
   return (
-    <div className="w-full font-MinionProMedium">
-      <FrontPage />
-      <CarCards />
-      <Footer />
+    <div className='w-full font-MinionProMedium'>   
+      <FrontPage/>
+      <SignUp/>
+      <SignIn/>
+      <AddCarForm/>
+      <CarCards/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
