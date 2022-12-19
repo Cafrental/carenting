@@ -6,20 +6,19 @@ const FrontPage = () => {
   return (
     <div className=" bg-black w-full h-screen flex">
       <div className="flex flex-row absolute p-2 ml-3 mt-3">
-        <button
+        <a href="/SignIn"
+          onClick="window.location.href='/SignIn'"
           className="bg-transparent text-white py-2 px-3 mr-3 text-base hover:bg-white hover:bg-opacity-20 transition-all duration-[250ms] ease-out group-hover:w-full"
-          onClick={[]}
         >
           {" "}
           Sign in{" "}
-        </button>
-        <button
+        </a>
+        <a href="/SignIn"
           className="border border-white bg-transparent text-white py-2 px-3 text-base hover:bg-white hover:bg-opacity-20 transition-all duration-[250ms] ease-out group-hover:w-full"
-          onClick={[]}
         >
           {" "}
           Sign up{" "}
-        </button>
+        </a>
       </div>
       <div className="w-1/2 flex">
         <img className="object-cover h-screen" src="/imgs/car3.png" />
