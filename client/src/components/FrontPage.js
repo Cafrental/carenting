@@ -13,7 +13,7 @@ const FrontPage = () => {
           {" "}
           Sign in{" "}
         </a>
-        <a href="/SignIn"
+        <a href="/SignUp"
           className="border border-white bg-transparent text-white py-2 px-3 text-base hover:bg-white hover:bg-opacity-20 transition-all duration-[250ms] ease-out group-hover:w-full"
         >
           {" "}

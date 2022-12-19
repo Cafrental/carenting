@@ -5,6 +5,7 @@ import App from "../App";
 const CarCards = () => {
 const [[id, make, model, photoURL, year], setClicked] = useState([])
 
+
 const [listOfCars, setListOfCars] = useState([]);
 
 useEffect(() => {
@@ -13,23 +14,24 @@ useEffect(() => {
   })
 }, [])
 
-  return (
-    <div className='grid grid-cols-4'>
-      <div className='col-span-3 grid grid-cols-3 gap-8 m-8'>
-        {listOfCars.map((car) =>{
-          return (
-            <div className="justify-center" onClick={() => { setClicked([car._id, car.make, car.model, car.photoURL, car.year])}}>
-              <div className="h-full border-solid border-2 border-gray-500 drop-shadow-lg bg-white hover:scale-105 transition duration-500 cursor-pointer">
-                <img className="" src={car.photoURL} alt={car.model}/>
-                <div className="p-5">
-                  <p className="text-gray-900 text-xl font-medium mb-2">{car.make} {car.model}</p>
-                  <p className="text-gray-600 text-md font-medium">{car.year}</p>
-                  <p className="text-gray-600 text-md font-medium">Location</p>
-                </div>
+return (
+  <div className='grid grid-cols-4'>
+    <div className='col-span-3 grid grid-cols-3 gap-8 m-8'>
+      {listOfCars.map((car) =>{
+        return (
+          <div className="justify-center" onClick={() => { setClicked([car._id, car.make, car.model, car.photoURL, car.year])}}>
+            <div className="h-full border-solid border-2 border-gray-500 drop-shadow-lg bg-white hover:scale-105 transition duration-500 cursor-pointer">
+              <img className="" src={car.photoURL} alt={car.model}/>
+              <div className="p-5">
+                <p className="text-gray-900 text-xl font-medium mb-2">{car.make} {car.model}</p>
+                <p className="text-gray-600 text-md font-medium">{car.year}</p>
+                <p className="text-gray-600 text-md font-medium">Location</p>
               </div>
             </div>
-          )})}
-      </div>
+          </div>
+        )})}
+    </div>
+    {make && (
       <div className="justify-center m-8">
         <div className="h-full border-solid border-2 border-black drop-shadow-lg bg-white hover:scale-105 transition duration-500 cursor-pointer">
           <div className="p-5">
@@ -44,9 +46,10 @@ useEffect(() => {
           </div>
         </div>
       </div>
-    </div>
+    )}
+  </div>
+);
 
-  );
 };
 
 export default CarCards;
