@@ -10,19 +10,22 @@ const Form = () => {
   const [Date, setDate] = useState(''); 
 
   const search = () => {
-    Axios.post("http://localhost:3001/search", {
-      like,
-      Make,
-      Model,
-      Location,
-      Date
-    }).then((response) => {alert(response.data)});
-  };
+    Axios.get("http://localhost:3001/search", {
+      params: {
+        make: Make,
+        model: Model,
+        location: Location,
+        date: Date
+      }
+    }).then((response) => {
+      alert(response.data);
+    });
+  }
 
   const [id, setOrder] = useState(0);
   return (
     <div className="h-full w-full items-center">
-      <form
+      <div
         action=""
         className="w-2/3 flex flex-col mt-8 items-center h-full mt-20"
       >
@@ -79,7 +82,7 @@ const Form = () => {
           className="h-10 text-white text-base border border-color-white align-middle w-1/3 hover:bg-white hover:bg-opacity-10 transition-all duration-[250ms] ease-out group-hover:w-full"
           onClick={search}
         >Search</button>
-      </form>
+        </div>
     </div>
   );
 };
