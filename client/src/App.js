@@ -8,9 +8,8 @@ import SignIn from './components/SignIn';
 
 
 function App() {
-
   return (
-    <div className='w-full'>   
+    <div className='w-full font-MinionProMedium'>
       <FrontPage/>
       <SignUp/>
       <SignIn/>
