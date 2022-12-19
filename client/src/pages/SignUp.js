@@ -13,44 +13,49 @@ const SignUp = () => {
       }).then((response) => {alert(response.data)});
     };
 
-    return (
-      <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-        <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-          <h1 className="text-3xl font-semibold text-center text-blue-600 underline">Sign Up</h1>
-          <div className="mb-2">
-            <label className="block text-sm font-semibold text-gray-800" htmlFor="username">Username</label>
-            <input
-              type="text"
-              className="block w-full px-4 py-2 mt-2 text-blue-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              value={username}
-              onChange={event => setUsername(event.target.value)}
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-sm font-semibold text-gray-800" htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="block w-full px-4 py-2 mt-2 text-blue-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              value={password}
-              onChange={event => setPassword(event.target.value)}
-            />
-          </div>
-          <div className="mt-6">
-            <button
-              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
-              onClick={createUser}
-            >
-              Sign In
-            </button>
-          </div>
-          <p className="mt-8 text-xs font-light text-center text-gray-700">
-            Already have an account?{' '}
-            <a href="#" className="font-medium text-blue-700 hover:underline">Sign in</a>
-          </p>
+  return (
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
+      <img class="w-12 m-5" src="/imgs/logo.svg" />
+      <div className="w-full p-10 m-auto bg-black lg:max-w-xl rounded">
+        <h1 className="text-2xl text-center text-white">Sign Up</h1>
+        <div className="mb-2">
+          <label className="block text-sm text-white" htmlFor="username">
+            Username
+          </label>
+          <input
+            type="text"
+            className="block w-full px-4 py-2 mt-2 text-zinc-500 focus:bg-white border"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </div>
+        <div className="mb-2">
+          <label className="block text-sm text-white" htmlFor="password">
+            Password
+          </label>
+          <input
+            type="password"
+            className="block w-full px-4 py-2 mt-2 text-zinc-500 bg-white border"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <div className="mt-6 justify-center flex">
+          <button
+            className="w-1/3 px-4 py-2 tracking-wide text-white duration-200 transform border hover:bg-white hover:bg-opacity-20 transition-all duration-[250ms] ease-out group-hover:w-full"
+            onClick={createUser}
+          >
+            Sign up
+          </button>
+        </div>
+        <p className="mt-8 text-xs text-center text-gray-400">
+          Already have an account?{" "}
+          <a href="#" className="text-white hover:underline">
+            Sign in
+          </a>
+        </p>
       </div>
-      
-
+    </div>
   );
 };
 
