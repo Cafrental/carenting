@@ -1,21 +1,19 @@
 import './App.css';
-import { useState } from 'react';
-import CarCards from './components/CarCards';
-import FrontPage from './components/FrontPage';
-import AddCarForm from './components/AddCarForm';
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 
 
-function App() {
+const App = () => {
   return (
-    <div className='w-full font-MinionProMedium'>
-      <FrontPage/>
-      <SignUp/>
-      <SignIn/>
-      <AddCarForm/>
-      <CarCards/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/SignIn" element={<SignUp />} />
+        <Route path="/SignUp" element={<SignIn />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
