@@ -14,6 +14,7 @@ const SignIn = () => {
         }).then((response) => {
           if (response.data.token) {
             document.cookie = `jwt=${response.data.token}`;
+            window.location.href = '/';
           } else {
             alert(response.data);
           }
@@ -25,7 +26,7 @@ const SignIn = () => {
 
     return (
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
-      <img class="w-12 m-5" src="/imgs/logo.svg" />
+      <a href="/"><img className="w-12 m-5 select-none" src="/imgs/logo.svg" /></a>
       <div className="w-full p-10 m-auto bg-black lg:max-w-xl rounded">
         <h1 className="text-2xl text-center text-white">Sign in</h1>
         <div className="mb-2">
