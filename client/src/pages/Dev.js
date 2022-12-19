@@ -4,7 +4,7 @@ import FrontPage from '../components/FrontPage';
 import AddCarForm from '../components/AddCarForm';
 
 
-const App = () => {
+const Dev = () => {
 
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -32,9 +32,10 @@ const App = () => {
   return (
     <div className='w-full font-MinionProMedium'>
       <FrontPage verifyToken={verifyToken} />
+      <AddCarForm/>
       <CarCards/>
     </div>
   )
 }
 
-export default App
+export default Dev
