@@ -3,6 +3,8 @@ import { useState } from 'react';
 import CarCards from './components/CarCards';
 import FrontPage from './components/FrontPage';
 import AddCarForm from './components/AddCarForm';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 
 
 function App() {
@@ -10,6 +12,8 @@ function App() {
   return (
     <div className='w-full'>   
       <FrontPage/>
+      <SignUp/>
+      <SignIn/>
       <AddCarForm/>
       <CarCards/>
     </div>
