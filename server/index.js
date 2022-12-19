@@ -15,6 +15,9 @@ const cors = require('cors')
 app.use(express.json());
 app.use(cors());
 
+const secret = "5zMJV11Klw6ZWuFYPFmrBJ";
+
+
 mongoose.connect(
     "mongodb+srv://User0:SuperPass525@appcluster.ocseros.mongodb.net/CarentingDB?retryWrites=true&w=majority"
 );
@@ -39,13 +42,12 @@ app.post("/createUser", async (req, res) => {
         };
         const newUser = new UserModel(user);
         await newUser.save();
-        res.json("User added");
+        res.json("User succesfully added");
     } catch (err) {
         res.json(err);
     }
 });
 
-//check token verification
 app.post("/login", async (req, res) => {
   try {
     // Authenticate user and get user data
@@ -60,7 +62,6 @@ app.post("/login", async (req, res) => {
           id: user.id,
           username: user.username
         };
-        const secret = "5zMJV11Klw6ZWuFYPFmrBJ";
         const options = {
           expiresIn: "1d"
         };
@@ -77,6 +78,20 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.get('/verify-token', async (req, res) => {
+  try {
+    const token = req.headers['x-access-token'];
+    const decoded = await jwt.verify(token, secret);
+    // If the token is valid, return a validation result of true and the username from the decoded token
+    return res.send({ isValid: true, username: decoded.username });
+  } catch (err) {
+    // If the token is invalid, return a validation result of false and a null username
+    return res.send({ isValid: false, username: null });
+  }
+});
+
+
+//doesnt fucking work
 app.post("/search", async (req, res) => {
   try {
   const { like, Make, Model, Location, Date } = req.body;

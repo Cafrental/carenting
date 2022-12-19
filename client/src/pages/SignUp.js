@@ -10,12 +10,19 @@ const SignUp = () => {
       Axios.post("http://localhost:3001/createUser", {
         username,
         password
-      }).then((response) => {alert(response.data)});
+      }).then((response) => {
+        if(response.data == "User succesfully added"){
+          window.location.href = '/';
+        } else {
+          alert(response.data)
+        }
+
+      });
     };
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
-      <img class="w-12 m-5" src="/imgs/logo.svg" />
+      <a href="/"><img className="w-12 m-5 select-none" src="/imgs/logo.svg" /></a>
       <div className="w-full p-10 m-auto bg-black lg:max-w-xl rounded">
         <h1 className="text-2xl text-center text-white">Sign Up</h1>
         <div className="mb-2">

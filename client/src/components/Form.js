@@ -26,7 +26,7 @@ const Form = () => {
         action=""
         className="w-2/3 flex flex-col mt-8 items-center h-full mt-20"
       >
-        <img class="w-2/12" src="/imgs/logo.svg" />
+        <img class="w-2/12 select-none" src="/imgs/logo.svg" />
         <p
           className="tracking-big font-MinionProBoldCond text-white mt-8 mb-2 text-sm"
           letter
