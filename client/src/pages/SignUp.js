@@ -1,19 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 import Axios from "axios";
 import App from "../App";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState(''); 
 
-  const createUser = () => {
-    Axios.post("http://localhost:3001/createUser", {
-      username,
-      password,
-    }).then((response) => {
-      alert(response.data);
-    });
-  };
+    const createUser = () => {
+      Axios.post("http://localhost:3001/createUser", {
+        username,
+        password
+      }).then((response) => {alert(response.data)});
+    };
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
