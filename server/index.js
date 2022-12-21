@@ -21,31 +21,55 @@ const secret = "5zMJV11Klw6ZWuFYPFmrBJ";
 mongoose.connect(
     "mongodb+srv://User0:SuperPass525@appcluster.ocseros.mongodb.net/CarentingDB?retryWrites=true&w=majority"
 );
-app.get("/getCars", (req, res) => {
-     CarModel.find({}, (err, result) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
-        }
-    });
+
+app.post("/createCar", async (req, res) => {
+  try {
+    const car = req.body;
+    const newCar = new CarModel(car);
+    await newCar.save();
+    res.json(car);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+app.get("/getCars", async (req, res) => {
+  try {
+    const make = req.query.make;
+    const model = req.query.model;
+
+    let query = {};
+    if (make || model) {
+      query = {
+        $or: [
+          { make: make ? { $eq: make } : { $exists: false } },
+          { model: model ? { $eq: model } : { $exists: false } }
+        ]
+      };
+    }
+    const cars = await CarModel.find(query).exec();
+    res.json(cars);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching cars", error });
+  }
 });
 
 app.post("/createUser", async (req, res) => {
-    try {
-        const password = req.body.password;
-        const saltRounds = 10;
-        const hash = await bcrypt.hash(password, saltRounds);
-        const user = {
-        username: req.body.username,
-        password: hash
-        };
-        const newUser = new UserModel(user);
-        await newUser.save();
-        res.json("User succesfully added");
-    } catch (err) {
-        res.json(err);
-    }
+  try {
+    const password = req.body.password;
+    const saltRounds = 10;
+    const hash = await bcrypt.hash(password, saltRounds);
+    const user = {
+    username: req.body.username,
+    password: hash
+    };
+    const newUser = new UserModel(user);
+    await newUser.save();
+    res.json("User succesfully added");
+  } catch (error) {
+
+    res.json(error);
+  }
 });
 
 app.post("/login", async (req, res) => {
@@ -66,15 +90,14 @@ app.post("/login", async (req, res) => {
           expiresIn: "1d"
         };
         const token = jwt.sign(payload, secret, options);
-
         // Return JWT to client
         res.json({ token });
       } else {
         res.json("Wrong password");
       }
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    res.json(error);
   }
 });
 
@@ -89,25 +112,6 @@ app.get('/verify-token', async (req, res) => {
     return res.send({ isValid: false, username: null });
   }
 });
-
-
-
-//doesnt fucking work
-// app.get("/search", async (req, res) => {
-//   const { make, model, location, date } = req.query;
-//   const result = await searchCars(make, model, location, date);
-//   res.json(result);
-// });
-
-
-app.post("/createCar", async (req, res) => {
-    const car = req.body;
-    const newCar = new CarModel(car);
-    await newCar.save();
-
-    res.json(car);
-});
-
 
 app.listen(3001, () => {
     console.log("server started")

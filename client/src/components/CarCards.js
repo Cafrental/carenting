@@ -2,22 +2,13 @@ import { useState, useEffect } from 'react';
 import Axios from "axios";
 import App from "../App";
 
-const CarCards = () => {
+const CarCards = (props) => {
 const [[id, make, model, photoURL, year], setClicked] = useState([])
-
-
-const [listOfCars, setListOfCars] = useState([]);
-
-useEffect(() => {
-  Axios.get("http://127.0.0.1:3001/getCars").then((response) => {
-    setListOfCars(response.data)
-  })
-}, [])
 
 return (
   <div className='grid grid-cols-4'>
     <div className='col-span-3 grid grid-cols-3 gap-8 m-8'>
-      {listOfCars.map((car) =>{
+      {props.cars.map((car) =>{
         return (
           <div className="justify-center" onClick={() => { setClicked([car._id, car.make, car.model, car.photoURL, car.year])}}>
             <div className="h-full border-solid border-2 border-gray-500 drop-shadow-lg bg-white hover:scale-105 transition duration-500 cursor-pointer">
