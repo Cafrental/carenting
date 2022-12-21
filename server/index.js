@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const CarModel = require('./models/cars.js')
 const UserModel = require('./models/users.js')
-const OrderModel = require('./models/orders.js')
-const LocationModel = require('./models/locations.js')
+//const OrderModel = require('./models/orders.js')
+//const LocationModel = require('./models/locations.js')
 
 mongoose.set('strictQuery', false);
 
@@ -24,8 +24,7 @@ mongoose.connect(
 
 app.post("/createCar", async (req, res) => {
   try {
-    const car = req.body;
-    const newCar = new CarModel(car);
+    const newCar = new CarModel(req.body);
     await newCar.save();
     res.json(car);
   } catch (error) {
@@ -35,15 +34,12 @@ app.post("/createCar", async (req, res) => {
 
 app.get("/getCars", async (req, res) => {
   try {
-    const make = req.query.make;
-    const model = req.query.model;
-
     let query = {};
     if (make || model) {
       query = {
         $or: [
-          { make: make ? { $eq: make } : { $exists: false } },
-          { model: model ? { $eq: model } : { $exists: false } }
+          { make: req.query.make ? { $eq: req.query.make } : { $exists: false } },
+          { model: req.query.model ? { $eq: req.query.model } : { $exists: false } }
         ]
       };
     }
@@ -56,9 +52,7 @@ app.get("/getCars", async (req, res) => {
 
 app.post("/createUser", async (req, res) => {
   try {
-    const password = req.body.password;
-    const saltRounds = 10;
-    const hash = await bcrypt.hash(password, saltRounds);
+    const hash = await bcrypt.hash(req.body.password, 10);
     const user = {
     username: req.body.username,
     password: hash
@@ -67,7 +61,6 @@ app.post("/createUser", async (req, res) => {
     await newUser.save();
     res.json("User succesfully added");
   } catch (error) {
-
     res.json(error);
   }
 });
