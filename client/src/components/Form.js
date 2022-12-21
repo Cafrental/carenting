@@ -2,29 +2,33 @@ import { useState } from "react";
 import Axios from "axios";
 import App from "../App";
 
-const Form = () => {
+const Form = (props) => {
+  const [cars, setCars] = useState([]);
+
   const [like, setLike] = useState('');
   const [Make, setMake] = useState(''); 
   const [Model, setModel] = useState(''); 
   const [Location, setLocation] = useState(''); 
   const [Date, setDate] = useState(''); 
 
-  const search = () => {
-    Axios.get("http://localhost:3001/search", {
-      params: {
-        make: Make,
-        model: Model,
-        location: Location,
-        date: Date
-      }
-    }).then((response) => {
-      alert(response.data);
-    });
+  async function getCars() {
+    try {
+      const response = await Axios.get("http://localhost:3001/getCars", {
+        params: {
+          make: Make,
+          model: Model
+        }
+      });
+      setCars(response.data);
+      props.setCars(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  const [id, setOrder] = useState(0);
   return (
-    <div className="h-full w-full items-center">
+    <div className="flex items-justify w-1/2 items-center">
+      <div className="h-full w-full items-center">
       <div
         action=""
         className="w-2/3 flex flex-col mt-8 items-center h-full mt-20"
@@ -47,19 +51,19 @@ const Form = () => {
         <div className="flex min-w-full">
           <input
             type="text"
-            id="mark"
+            id="Make"
             className="basis-5/12 mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
             placeholder="Make"
-            onChange={setMake}
-          ></input>
+            onChange={(event) => setMake(event.target.value)}
+            ></input>
           <div className="basis-2/12"></div>
           <input
             type="text"
-            id="mark"
+            id="Model"
             className="basis-5/12 justify-self-end mt-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5"
             placeholder="Model"
-            onChange={setModel}
-          ></input>
+            onChange={(event) => setModel(event.target.value)}
+            ></input>
         </div>
 
         <div className="flex min-w-full mt-4 mb-10">
@@ -80,9 +84,10 @@ const Form = () => {
         </div>
         <button
           className="h-10 text-white text-base border border-color-white align-middle w-1/3 hover:bg-white hover:bg-opacity-10 transition-all duration-[250ms] ease-out group-hover:w-full"
-          onClick={search}
+          onClick={getCars}
         >Search</button>
         </div>
+    </div>
     </div>
   );
 };
