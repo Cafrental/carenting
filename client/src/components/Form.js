@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
-import App from "../App";
 
 const Form = (props) => {
   const [cars, setCars] = useState([]);
@@ -25,6 +24,10 @@ const Form = (props) => {
       console.error(error);
     }
   }
+  
+  useEffect( () => {
+    getCars();
+  }, [])
 
   return (
     <div className="flex items-justify w-1/2 items-center">

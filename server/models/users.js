@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
     },
     isAuth: {
         type: Boolean,
-        required: false,
+        default: true,
+        required: true
     }
 });
 

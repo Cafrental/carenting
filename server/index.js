@@ -34,12 +34,15 @@ app.post("/createCar", async (req, res) => {
 
 app.get("/getCars", async (req, res) => {
   try {
+    const model = req.query.model
+    const make = req.query.make
+
     let query = {};
     if (make || model) {
       query = {
         $or: [
-          { make: req.query.make ? { $eq: req.query.make } : { $exists: false } },
-          { model: req.query.model ? { $eq: req.query.model } : { $exists: false } }
+          { make: make ? { $eq: make } : { $exists: false } },
+          { model: model ? { $eq: model } : { $exists: false } }
         ]
       };
     }
