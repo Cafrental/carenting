@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import CarCards from '../components/CarCards';
 import FrontPage from '../components/FrontPage';
 import Form from "../components/Form";
+import Footer from "../components/Footer";
 
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
         <Form setCars={setCars} />
       </div>
       <CarCards cars={cars}/>
+      <Footer />
     </div>
   )
 }

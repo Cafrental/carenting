@@ -4,6 +4,9 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Dev from './pages/Dev';
+import Cookies from './pages/Cookies';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 
 const App = () => {
@@ -14,6 +17,10 @@ const App = () => {
         <Route exact path="/dev" element={<Dev />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
+        {/* Footer */}
+        <Route path="/Cookies" element={<Cookies />} />
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/TermsOfService" element={<TermsOfService />} />
       </Routes>
     </BrowserRouter>
   )
